@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="row row-cols-lg-4 row-cols-2 gap-3 mt-3 justify-content-around">
+    {% for review in reviews %}
+        <div class="card text-center">
+          <h5 class="card-header">
+            {{ review.user.last_name }} {{ review.user.first_name[0] }}.{{ review.user.middle_name[0] }}.
+          </h5>
+          <div class="card-body">
+            <h5 class="card-title">Oценка - {{ review.score }}</h5>
+            <p class="card-text">{{ review.text.replace('\n', '<br>') | safe }}</p>
+              <a href="{{ url_for("views.moderating_reviews", book_id=review.book_id, user_id=review.user_id, status="accepted") }}" class="btn btn-success"><i class="bi bi-check"></i></a>
+              <a href="{{ url_for("views.moderating_reviews", book_id=review.book_id, user_id=review.user_id, status="declined") }}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+          </div>
+        </div>
+    {% endfor %}
+  </div>
+{% endblock %}

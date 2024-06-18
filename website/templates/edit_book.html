@@ -1,0 +1,6 @@
+{% extends "base.html" %} 
+{% block title %}Изменить Книгу{% endblock %}
+{% block content %}
+{% from 'macros.html' import book_form %}
+{{ book_form(book, styles) }}
+{% endblock %}
